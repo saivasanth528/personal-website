@@ -1,0 +1,114 @@
+---
+const groups = [
+  {
+    category: 'Languages',
+    skills: ['Python', 'Java', 'JavaScript', 'TypeScript'],
+  },
+  {
+    category: 'Cloud & Infrastructure',
+    skills: ['AWS Glue', 'Lambda', 'Step Functions', 'DMS', 'S3', 'Redshift', 'RDS', 'GCP BigQuery', 'GCP Pub/Sub', 'Terraform', 'Jenkins'],
+  },
+  {
+    category: 'Databases & Warehouses',
+    skills: ['Redshift', 'BigQuery', 'Snowflake', 'PostgreSQL', 'MongoDB', 'MySQL', 'Elasticsearch', 'OpenSearch'],
+  },
+  {
+    category: 'Observability',
+    skills: ['Datadog', 'Prometheus', 'Grafana', 'Loki', 'PagerDuty', 'CloudWatch'],
+  },
+  {
+    category: 'Backend & APIs',
+    skills: ['Node.js', 'Express.js', 'REST APIs', 'Apache Kafka', 'MEAN Stack'],
+  },
+  {
+    category: 'Practices',
+    skills: ['System Design', 'Technical Leadership', 'Cross-team Collaboration', 'Mentoring', 'Code Review', 'API Design'],
+  },
+];
+---
+
+<section id="skills">
+  <div class="container">
+    <p class="section-label reveal">Skills</p>
+    <h2 class="section-title reveal">What I Work<br /><span class="gradient-text">With</span></h2>
+
+    <div class="skills-grid">
+      {
+        groups.map((group, i) => (
+          <div class="skill-group reveal" style={`transition-delay: ${i * 0.08}s`}>
+            <h3 class="group-name">{group.category}</h3>
+            <div class="pills">
+              {group.skills.map((skill) => (
+                <span class="pill">{skill}</span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-grid {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skill-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .skill-group:hover {
+    border-color: rgba(6, 182, 212, 0.28);
+    transform: translateY(-4px);
+  }
+
+  .group-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    transition: all 0.2s ease;
+    cursor: default;
+  }
+
+  .pill:hover {
+    border-color: rgba(6, 182, 212, 0.4);
+    color: var(--accent);
+    background: rgba(6, 182, 212, 0.06);
+  }
+
+  @media (max-width: 900px) {
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+</style>

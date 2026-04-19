@@ -1,0 +1,169 @@
+---
+// Real work highlights — framed as notable engineering projects
+const projects = [
+  {
+    name: 'Monitoring & Alerting Platform',
+    where: 'Nium',
+    description:
+      'Designed the entire observability stack for the data team from scratch — Datadog, Loki, PagerDuty, Grafana, and Prometheus. 99.99% alert accuracy sustained over 2.5 years. Reduced production escalations by 99%.',
+    tags: ['Python', 'Terraform', 'Datadog', 'Loki', 'PagerDuty', 'Grafana'],
+    stat: '99% fewer escalations',
+  },
+  {
+    name: 'Config-driven Copy Framework',
+    where: 'Nium',
+    description:
+      'Built a multi-threaded, config-driven S3-to-Redshift ingestion framework from scratch. No code changes per new use case — just config. Powers regulatory reporting and core analytical workloads. Presented at internal TGIT.',
+    tags: ['Python', 'AWS S3', 'Redshift', 'Multithreading'],
+    stat: 'Millions of records at scale',
+  },
+  {
+    name: 'BigQuery Observability Platform',
+    where: 'Unravel Data',
+    description:
+      'Redesigned the BigQuery data pipeline and model, migrated search from Elasticsearch to OpenSearch, and drove three major product releases. The platform was featured in Datanami as a key revenue driver.',
+    tags: ['Java', 'Python', 'BigQuery', 'OpenSearch', 'Kafka', 'GCP'],
+    stat: 'Featured in Datanami',
+  },
+];
+---
+
+<section id="projects">
+  <div class="container">
+    <p class="section-label reveal">Selected Work</p>
+    <h2 class="section-title reveal">Things I've<br /><span class="gradient-text">Built</span></h2>
+
+    <div class="projects-grid">
+      {
+        projects.map((project, i) => (
+          <div class="project-card reveal" style={`transition-delay: ${i * 0.1}s`}>
+            <div class="card-top">
+              <span class="card-where">{project.where}</span>
+              <span class="card-stat">{project.stat}</span>
+            </div>
+
+            <h3 class="project-name">{project.name}</h3>
+            <p class="project-desc">{project.description}</p>
+
+            <div class="project-tags">
+              {project.tags.map((tag) => (
+                <span class="ptag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-grid {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-card:hover {
+    border-color: rgba(6, 182, 212, 0.28);
+    transform: translateY(-6px);
+  }
+
+  .project-card:hover::before {
+    opacity: 1;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card-where {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid rgba(6, 182, 212, 0.25);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .card-stat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-align: right;
+  }
+
+  .project-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .project-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.75;
+    flex: 1;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: auto;
+  }
+
+  .ptag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .ptag + .ptag::before {
+    content: '·';
+    margin-right: 0.75rem;
+    color: var(--border);
+  }
+
+  @media (max-width: 900px) {
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,443 @@
+---
+const experiences = [
+  {
+    role: 'Staff Software Engineer',
+    promotedFrom: 'Senior Software Engineer',
+    promotedDate: 'Oct 2025',
+    company: 'Nium',
+    period: 'Aug 2023 - Present',
+    location: 'Hyderabad',
+    highlights: [
+      "The data team had no alerting - every pipeline failure landed as a Slack escalation at 2 AM. I built the entire observability stack from scratch: Datadog, Loki, PagerDuty, Grafana, Prometheus. 99.99% accuracy over 2.5 years. Escalations down 99%. The on-call now knows before anyone else does.",
+      "Regulatory reporting was running on legacy Pentaho jobs nobody fully understood. I took ownership of the Safeguarding migration - read the legacy SQL line by line, pulled the right people into the room, and rebuilt it on Redshift. Compliance teams went from manual Excel checks to reliable dashboards. Any change now takes days, not sprints.",
+      "Built a config-driven, multi-threaded S3-to-Redshift copy framework from scratch. No code change per new use case - just config. Handles millions of records, de-duplication, and parallel ingestion. It's now the backbone of core regulatory and analytical workloads. Presented it at TGIT - got personal appreciation from the Director.",
+      "When an audit needed MasterCard transaction monitoring data backfilled from Jan 2024, the source team said 10 days. We delivered ~21M records in 2.5 hours. Zero exceptions. Audit closed successfully.",
+      "Led the org-wide GenAI evaluation - compared Copilot, Cursor, and WinSurf on live engineering use cases from our own codebase. Engaged directly with CodeAnt's CEO. Recommended GitHub Copilot based on real evidence. Secured 50 licences for pilot rollout.",
+    ],
+    tags: ['Python', 'AWS', 'Redshift', 'Terraform', 'Datadog', 'PagerDuty', 'Loki', 'DMS', 'Glue', 'Lambda'],
+    current: true,
+  },
+  {
+    role: 'MTS-2',
+    promotedFrom: 'MTS-1',
+    promotedDate: null,
+    company: 'Unravel Data',
+    period: 'May 2021 - Aug 2023',
+    location: 'Hyderabad',
+    highlights: [
+      "The BigQuery pipeline had reliability problems and a search layer that couldn't scale. I redesigned the data model, migrated from Elasticsearch to OpenSearch, and shipped it across three major releases. The platform was featured in Datanami. Won the Above and Beyond Award for this work.",
+      "Onboarding a GCP project to Unravel took 10 minutes of manual steps. I built a hackathon prototype that automated the whole thing. It shipped as a core product feature in 4.7.5.0. Customers now onboard in under 10 seconds.",
+      "Led the POC and initial development of the Snowflake pipeline - from requirements and data model design to early delivery. Shaped how customer-environment metrics mapped to the Unravel data model.",
+      "Was the sole Kafka POC. When production issues came in, I reproduced the customer environment locally and debugged at Java class level to trace the root cause. Kept the pipeline stable and customers satisfied.",
+    ],
+    tags: ['Java', 'Python', 'Kafka', 'BigQuery', 'Snowflake', 'Elasticsearch', 'OpenSearch', 'GCP', 'PostgreSQL'],
+    current: false,
+  },
+  {
+    role: 'Senior Product Developer',
+    promotedFrom: 'Product Developer',
+    promotedDate: null,
+    company: 'Inncircles',
+    period: 'June 2019 - April 2021',
+    location: 'Hyderabad',
+    highlights: [
+      "No security framework existed - access control was scattered across products. I designed and built the company-wide RBAC permissions framework from scratch. It became the single access control foundation across all products.",
+      "Users in low-connectivity areas were getting logged out mid-session on a 6-hour token expiry. I built a refresh token framework supporting both web and mobile simultaneously, extending sessions to 30 days. Rolled out company-wide.",
+      "API responses were inconsistent across services, causing constant frontend integration bugs. I designed and implemented a unified response and error-handling middleware - standardised all services, cut error rates by 40%.",
+      "Led the in-house ticketing and support framework (similar to Jira) used by clients and internal teams. Mentored 3 engineers while delivering it end to end.",
+    ],
+    tags: ['MEAN Stack', 'Node.js', 'Angular', 'MongoDB', 'Express.js'],
+    current: false,
+  },
+];
+---
+
+<section id="experience" class="exp-section">
+  <div class="container">
+    <p class="section-label reveal">Experience</p>
+    <h2 class="section-title reveal">Where I've<br /><span class="gradient-text">Worked</span></h2>
+  </div>
+
+  <div id="exp-scroll-wrapper" class="exp-scroll-wrapper">
+    <div class="exp-sticky">
+      <div class="container exp-inner">
+
+        <nav class="exp-nav" aria-label="Experience navigation">
+          <div class="progress-track" aria-hidden="true">
+            <div id="exp-progress-fill" class="progress-fill"></div>
+          </div>
+
+          {experiences.map((exp, i) => (
+            <button
+              class={`exp-nav-item ${i === 0 ? 'active' : ''}`}
+              data-index={i}
+              aria-label={`View ${exp.role} at ${exp.company}`}
+            >
+              <span class="nav-index">0{i + 1}</span>
+              <span class="nav-details">
+                <span class="nav-role">{exp.role}</span>
+                <span class="nav-company">{exp.company} · {exp.period}</span>
+              </span>
+            </button>
+          ))}
+        </nav>
+
+        <div class="exp-panels">
+          {experiences.map((exp, i) => (
+            <div
+              class={`exp-panel ${i === 0 ? 'active' : ''}`}
+              data-panel={i}
+              aria-hidden={i !== 0}
+            >
+              <div class="panel-eyebrow">
+                <span class="panel-period">{exp.period}</span>
+                <span class="panel-dot" aria-hidden="true" />
+                <span class="panel-location">{exp.location}</span>
+              </div>
+
+              <h3 class="panel-role">{exp.role}</h3>
+
+              {exp.promotedFrom && (
+                <div class="promo-badge">
+                  <span class="promo-from">{exp.promotedFrom}</span>
+                  <span class="promo-arrow">→</span>
+                  <span class="promo-to">{exp.role}</span>
+                  {exp.promotedDate && <span class="promo-date">· {exp.promotedDate}</span>}
+                </div>
+              )}
+
+              <p class="panel-company">{exp.company}</p>
+
+              <ul class="panel-highlights">
+                {exp.highlights.map(h => (
+                  <li>
+                    <span class="bullet" aria-hidden="true">▸</span>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div class="panel-tags">
+                {exp.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .exp-section { padding-bottom: 0; }
+
+  .exp-scroll-wrapper {
+    height: calc(3 * 100vh);
+    position: relative;
+  }
+
+  .exp-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .exp-inner {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 5rem;
+    align-items: start;
+    width: 100%;
+    padding-top: 2rem;
+  }
+
+  /* ── Left nav ── */
+  .exp-nav {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .progress-track {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(180deg, #06b6d4, #8b5cf6);
+    border-radius: 2px;
+    transition: height 0.08s linear;
+  }
+
+  .exp-nav-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+  }
+
+  .exp-nav-item.active { opacity: 1; }
+
+  .nav-index {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .nav-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .nav-role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .nav-company {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+
+  /* ── Right panels ── */
+  .exp-panels {
+    position: relative;
+    min-height: 400px;
+  }
+
+  .exp-panel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+    overflow-y: auto;
+    max-height: calc(100vh - 14rem);
+    padding-right: 1rem;
+  }
+
+  .exp-panel.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    position: relative;
+  }
+
+  .panel-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .panel-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .panel-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  .panel-location {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  .panel-role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .promo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    background: rgba(139, 92, 246, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.22);
+    padding: 0.3rem 0.85rem;
+    border-radius: 100px;
+    margin-top: -0.25rem;
+  }
+
+  .promo-from {
+    color: var(--muted);
+  }
+
+  .promo-arrow {
+    color: var(--accent-2);
+    font-size: 0.75rem;
+  }
+
+  .promo-to {
+    background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 500;
+  }
+
+  .promo-date {
+    color: var(--muted);
+    opacity: 0.7;
+  }
+
+  .panel-company {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .panel-highlights {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .panel-highlights li {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .bullet {
+    color: var(--accent);
+    font-size: 0.6rem;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .panel-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent);
+    background: rgba(6, 182, 212, 0.07);
+    border: 1px solid rgba(6, 182, 212, 0.18);
+    padding: 0.3rem 0.75rem;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Mobile fallback ── */
+  @media (max-width: 768px) {
+    .exp-scroll-wrapper { height: auto; }
+    .exp-sticky { position: relative; height: auto; padding: 2rem 0 4rem; }
+    .exp-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .exp-nav { display: none; }
+    .exp-panels { min-height: unset; }
+    .exp-panel {
+      position: relative;
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+      display: flex;
+      max-height: none;
+      padding-right: 0;
+      margin-bottom: 3rem;
+    }
+  }
+</style>
+
+<script>
+  const wrapper = document.getElementById('exp-scroll-wrapper')!;
+  const navItems = document.querySelectorAll<HTMLElement>('.exp-nav-item');
+  const panels = document.querySelectorAll<HTMLElement>('.exp-panel');
+  const progressFill = document.getElementById('exp-progress-fill')!;
+  const count = panels.length;
+  let currentIndex = 0;
+
+  function setActive(index: number) {
+    if (index === currentIndex) return;
+    currentIndex = index;
+    navItems.forEach((item, i) => item.classList.toggle('active', i === index));
+    panels.forEach((panel, i) => {
+      panel.classList.toggle('active', i === index);
+      panel.setAttribute('aria-hidden', String(i !== index));
+    });
+  }
+
+  function onScroll() {
+    const rect = wrapper.getBoundingClientRect();
+    const scrolled = -rect.top;
+    const scrollable = rect.height - window.innerHeight;
+    if (scrollable <= 0) return;
+
+    const progress = Math.max(0, Math.min(1, scrolled / scrollable));
+    progressFill.style.height = `${progress * 100}%`;
+
+    const index = Math.min(count - 1, Math.floor(progress * count));
+    setActive(index);
+  }
+
+  navItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      const index = Number(item.dataset.index);
+      const rect = wrapper.getBoundingClientRect();
+      const scrollable = rect.height - window.innerHeight;
+      const targetScroll = window.scrollY + rect.top + (index / count) * scrollable + 1;
+      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+    });
+  });
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>

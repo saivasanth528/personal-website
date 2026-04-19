@@ -1,0 +1,262 @@
+---
+---
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p class="section-label">About</p>
+        <h2 class="section-title">
+          I own problems,<br /><span class="gradient-text">end to end</span>
+        </h2>
+
+        <div class="bio">
+          <p>
+            I'm a Staff Software Engineer at Nium, building the data platform that powers
+            fintech operations - compliance reporting, client analytics, and production reliability.
+            I started as a full-stack developer, grew into backend systems, and now live at the
+            intersection of data engineering, cloud infrastructure, and observability.
+          </p>
+          <p>
+            I don't wait to be handed a problem. I find it, design the solution, align the
+            stakeholders, and ship it. Whether that's a monitoring framework that catches
+            failures before anyone escalates, or a regulatory pipeline that auditors sign off on.
+          </p>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-num gradient-text">99%</span>
+            <span class="stat-label">Escalations Reduced</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num gradient-text">6.5</span>
+            <span class="stat-label">Years in Production</span>
+          </div>
+          <div class="stat">
+            <div class="stat-fun">
+              <span class="stat-label fun-label">Fun fact</span>
+              <p class="stat-story">
+                Deleted 5 billion records from production.<br />
+                <em>On purpose. Nothing broke.</em>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beyond the code -->
+        <div class="beyond">
+          <span class="beyond-label">Beyond the code</span>
+          <p class="beyond-text">
+            I'm a stock market and geopolitics news buff - always three tabs deep in something
+            happening in the world. I consume podcasts and music at an embarrassing rate, and
+            I'm a bathroom singer. My favourite place is anywhere with my favourite people.
+            I have an involuntary habit of rhyming things mid-conversation - my close friends
+            won't let me live it down. Work should feel like your favourite video game.
+            If it doesn't, something's off.
+          </p>
+        </div>
+
+        <!-- Resume: paste your Google Drive share URL here.
+             In Drive: Share → Anyone with link → Copy link.
+             When resume changes, use "Manage versions" to replace the file — same URL, no redeploy needed. -->
+        <a href="https://drive.google.com/file/d/YOUR_FILE_ID/view" target="_blank" rel="noopener noreferrer" class="resume-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
+          </svg>
+          Download Resume
+        </a>
+      </div>
+
+      <div class="about-image">
+        <div class="image-wrap">
+          <img src="/images/vasanth_pondicherry.jpeg" alt="Sai Vasanth in Pondicherry" loading="lazy" />
+          <div class="image-glow" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .bio {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .bio p {
+    color: var(--muted);
+    line-height: 1.85;
+    font-size: 0.95rem;
+  }
+
+  /* Stats */
+  .stats {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* Fun fact stat */
+  .stat-fun {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .fun-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .stat-story {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.88rem;
+    color: var(--text);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  .stat-story em {
+    font-style: normal;
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Beyond the code */
+  .beyond {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    border-left: 2px solid var(--accent);
+  }
+
+  .beyond-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .beyond-text {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.85;
+  }
+
+  .resume-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.7rem 1.4rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .resume-btn:hover {
+    background: rgba(6, 182, 212, 0.08);
+    transform: translateY(-2px);
+  }
+
+  /* Image */
+  .about-image {
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 6rem;
+  }
+
+  .image-wrap {
+    position: relative;
+    width: 340px;
+    height: 420px;
+  }
+
+  .image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 12px;
+    position: relative;
+    z-index: 1;
+    filter: grayscale(10%);
+    transition: filter 0.4s ease;
+  }
+
+  .image-wrap:hover img {
+    filter: grayscale(0%);
+  }
+
+  .image-glow {
+    position: absolute;
+    inset: -1px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.5), rgba(139, 92, 246, 0.5));
+    z-index: 0;
+  }
+
+  @media (max-width: 860px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .about-image {
+      order: -1;
+      position: relative;
+      top: 0;
+    }
+    .image-wrap { width: 260px; height: 320px; }
+  }
+</style>

@@ -1,0 +1,11 @@
+dist/
+.output/
+node_modules/
+.env
+.env.*
+!.env.example
+.DS_Store
+.astro/
+.claude/
+MasterDocument.md
+SAIVASANTH_RESUME.pdf

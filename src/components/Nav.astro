@@ -1,0 +1,116 @@
+---
+const isHome = Astro.url.pathname === '/';
+
+const links = [
+  { href: isHome ? '#about' : '/#about', label: 'About' },
+  { href: isHome ? '#experience' : '/#experience', label: 'Experience' },
+  { href: isHome ? '#skills' : '/#skills', label: 'Skills' },
+  { href: isHome ? '#projects' : '/#projects', label: 'Projects' },
+  { href: isHome ? '#contact' : '/#contact', label: 'Contact' },
+];
+---
+
+<header id="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">SV<span>.</span></a>
+    <nav>
+      <ul>
+        {links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem 2rem;
+    transition:
+      background 0.3s ease,
+      padding 0.3s ease;
+  }
+
+  header.scrolled {
+    background: rgba(9, 9, 11, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    margin-right: auto;
+    letter-spacing: -0.02em;
+  }
+
+  .logo span {
+    color: var(--accent);
+  }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  }
+
+  nav a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s ease;
+    position: relative;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.2s ease;
+  }
+
+  nav a:hover {
+    color: var(--text);
+  }
+
+  nav a:hover::after {
+    width: 100%;
+  }
+
+
+  @media (max-width: 768px) {
+    nav,
+    .nav-cta {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const header = document.getElementById('nav')!;
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 50);
+  });
+</script>
