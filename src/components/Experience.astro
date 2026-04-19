@@ -25,10 +25,11 @@ const experiences = [
     period: 'May 2021 - Aug 2023',
     location: 'Hyderabad',
     highlights: [
-      "The BigQuery pipeline had reliability problems and a search layer that couldn't scale. I redesigned the data model, migrated from Elasticsearch to OpenSearch, and shipped it across three major releases. The platform was featured in Datanami. Won the Above and Beyond Award for this work.",
-      "Onboarding a GCP project to Unravel took 10 minutes of manual steps. I built a hackathon prototype that automated the whole thing. It shipped as a core product feature in 4.7.5.0. Customers now onboard in under 10 seconds.",
-      "Led the POC and initial development of the Snowflake pipeline - from requirements and data model design to early delivery. Shaped how customer-environment metrics mapped to the Unravel data model.",
-      "Was the sole Kafka POC. When production issues came in, I reproduced the customer environment locally and debugged at Java class level to trace the root cause. Kept the pipeline stable and customers satisfied.",
+      `Took full ownership of the BigQuery pipeline - undocumented, single-threaded, built on fragile ObjectNode parsing that made testing nearly impossible. Refactored the entire codebase to type-safe POJOs, ported it into a dedicated Kafka worker with independent partitions, and scaled it to handle hundreds of concurrent GCP projects. Drove BigQuery from internal V1 to private preview across three major releases (4.7.3 to 4.7.5), trained the full cross-pillar team, and owned every architectural decision. Platform launch <a href="https://www.hpcwire.com/bigdatawire/this-just-in/unravel-data-launches-cloud-data-cost-observability-and-optimization-for-google-cloud-bigquery/" target="_blank" rel="noopener noreferrer" class="highlight-link">covered by Datanami</a>. Won the Above and Beyond Award.`,
+      "The night a major release shipped, a critical production issue hit. No handoff, no playbook. I debugged the failure, validated the fix across 10 customer clusters, and drove a clean build by morning.",
+      "GCP project onboarding required 10 minutes of manual steps. I built a hackathon prototype that automated it end-to-end. It shipped as a core product feature in 4.7.5.0 - now the entry point for every new Unravel customer.",
+      "Led the Snowflake pipeline from zero - requirements, data model, and initial delivery in 4.7.4.0. Defined from scratch how customer-environment metrics mapped to Unravel's schema.",
+      "Was the sole Kafka SME. When production failures came in, I reproduced the exact customer environment locally and debugged at Java class level to trace the root cause - keeping enterprise pipelines stable without escalation.",
     ],
     tags: ['Java', 'Python', 'Kafka', 'BigQuery', 'Snowflake', 'Elasticsearch', 'OpenSearch', 'GCP', 'PostgreSQL'],
     current: false,
@@ -41,6 +42,7 @@ const experiences = [
     period: 'June 2019 - April 2021',
     location: 'Hyderabad',
     highlights: [
+      "Led the TechLearn edtech platform - an internal product for live online learning. Integrated the Zoom Web SDK end-to-end, letting users schedule, host, and join webinars without leaving the app.",
       "No security framework existed - access control was scattered across products. I designed and built the company-wide RBAC permissions framework from scratch. It became the single access control foundation across all products.",
       "Users in low-connectivity areas were getting logged out mid-session on a 6-hour token expiry. I built a refresh token framework supporting both web and mobile simultaneously, extending sessions to 30 days. Rolled out company-wide.",
       "API responses were inconsistent across services, causing constant frontend integration bugs. I designed and implemented a unified response and error-handling middleware - standardised all services, cut error rates by 40%.",
@@ -112,7 +114,7 @@ const experiences = [
                 {exp.highlights.map(h => (
                   <li>
                     <span class="bullet" aria-hidden="true">▸</span>
-                    <span>{h}</span>
+                    <span set:html={h}></span>
                   </li>
                 ))}
               </ul>
@@ -350,6 +352,17 @@ const experiences = [
     font-size: 0.875rem;
     color: var(--muted);
     line-height: 1.8;
+  }
+
+  .highlight-link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s ease;
+  }
+
+  .highlight-link:hover {
+    opacity: 0.75;
   }
 
   .bullet {
