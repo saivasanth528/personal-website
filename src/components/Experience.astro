@@ -25,9 +25,9 @@ const experiences = [
     period: 'May 2021 - Aug 2023',
     location: 'Hyderabad',
     highlights: [
-      `Took full ownership of the BigQuery pipeline - undocumented, single-threaded, built on fragile ObjectNode parsing that made testing nearly impossible. Refactored the entire codebase to type-safe POJOs, ported it into a dedicated Kafka worker with independent partitions, and scaled it to handle hundreds of concurrent GCP projects. Drove BigQuery from internal V1 to private preview across three major releases (4.7.3 to 4.7.5), trained the full cross-pillar team, and owned every architectural decision. Platform launch <a href="https://www.hpcwire.com/bigdatawire/this-just-in/unravel-data-launches-cloud-data-cost-observability-and-optimization-for-google-cloud-bigquery/" target="_blank" rel="noopener noreferrer" class="highlight-link">covered by Datanami</a>. Won the Above and Beyond Award.`,
-      "The night a major release shipped, a critical production issue hit. No handoff, no playbook. I debugged the failure, validated the fix across 10 customer clusters, and drove a clean build by morning.",
-      "GCP project onboarding required 10 minutes of manual steps. I built a hackathon prototype that automated it end-to-end. It shipped as a core product feature in 4.7.5.0 - now the entry point for every new Unravel customer.",
+      `Took full ownership of the BigQuery pipeline - undocumented, single-threaded, built on fragile ObjectNode parsing that made testing nearly impossible. Refactored the entire codebase to type-safe POJOs, ported it into a dedicated Kafka worker with independent partitions, and scaled it to handle hundreds of concurrent GCP projects. Drove it from internal V1 to public release, shipping the observability platform across <a href="https://docs.unraveldata.com/en/rn-4750.html#UUID-c6f390b5-bbfd-3c6b-1476-44c9275f6722_section-idm1213184054015470" target="_blank" rel="noopener noreferrer" class="highlight-link">4.7.5.0</a>, <a href="https://docs.unraveldata.com/unravel-v478x/en/rn-4770.html#UUID-d4e6fb47-3a12-66eb-df55-da86509a0954_section-idm1213184054015470" target="_blank" rel="noopener noreferrer" class="highlight-link">4.7.7.0</a>, and <a href="https://docs.unraveldata.com/unravel-v481x/en/rn-4810.html#UUID-9491ff36-e448-eef1-a603-5dc4972e66e5_section-idm1213184053887990" target="_blank" rel="noopener noreferrer" class="highlight-link">4.8.1.0</a>. Trained the full cross-pillar team and owned every architectural decision end-to-end. Won the Above and Beyond Award for this body of work. The platform was <a href="https://www.hpcwire.com/bigdatawire/this-just-in/unravel-data-launches-cloud-data-cost-observability-and-optimization-for-google-cloud-bigquery/" target="_blank" rel="noopener noreferrer" class="highlight-link">covered by Datanami</a>.`,
+      "The night 4.8.1.0 shipped, a critical production issue hit. No handoff, no playbook. I debugged the failure, validated the fix across 10 customer clusters, and drove a clean build by morning.",
+      `GCP project onboarding required 10 minutes of manual steps. I built a hackathon prototype that automated it end-to-end. It shipped as a core product feature in <a href="https://docs.unraveldata.com/en/rn-4750.html#UUID-c6f390b5-bbfd-3c6b-1476-44c9275f6722_section-idm1213184054015470" target="_blank" rel="noopener noreferrer" class="highlight-link">4.7.5.0</a> - now the entry point for every new Unravel customer.`,
       "Led the Snowflake pipeline from zero - requirements, data model, and initial delivery in 4.7.4.0. Defined from scratch how customer-environment metrics mapped to Unravel's schema.",
       "Was the sole Kafka SME. When production failures came in, I reproduced the exact customer environment locally and debugged at Java class level to trace the root cause - keeping enterprise pipelines stable without escalation.",
     ],
@@ -354,14 +354,14 @@ const experiences = [
     line-height: 1.8;
   }
 
-  .highlight-link {
+  :global(.highlight-link) {
     color: var(--accent);
     text-decoration: underline;
     text-underline-offset: 3px;
     transition: opacity 0.2s ease;
   }
 
-  .highlight-link:hover {
+  :global(.highlight-link:hover) {
     opacity: 0.75;
   }
 
