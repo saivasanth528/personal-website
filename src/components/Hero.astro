@@ -17,9 +17,9 @@
     </h1>
 
     <div class="hero-role">
-      <span class="gradient-text">Built in startups</span>
-      <span class="divider" aria-hidden="true">·</span>
-      <span class="years">7 years &amp; counting</span>
+      <span class="role-prefix">I'm a </span>
+      <span id="typewriter" class="gradient-text" aria-live="polite"></span>
+      <span class="cursor-blink" aria-hidden="true">|</span>
     </div>
 
     <p class="hero-tagline">
@@ -176,21 +176,30 @@
   .hero-role {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 0.25rem;
     font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(1rem, 2.5vw, 1.35rem);
     font-weight: 500;
     margin-bottom: 2rem;
+    min-height: 2rem;
   }
 
-  .divider { color: var(--border); }
-
-  .years {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
+  .role-prefix {
     color: var(--muted);
-    letter-spacing: 0.05em;
+    font-weight: 400;
+  }
+
+  .cursor-blink {
+    color: var(--accent);
+    font-weight: 300;
+    animation: blink 1s step-end infinite;
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    line-height: 1;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
   }
 
   .hero-tagline {
@@ -314,3 +323,49 @@
     .btn-primary, .btn-secondary { width: 100%; text-align: center; }
   }
 </style>
+
+<script>
+  const roles = [
+    'Data Platform Engineer',
+    'Backend Systems Builder',
+    'Full-Stack Developer',
+  ];
+
+  const el = document.getElementById('typewriter')!;
+  let roleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  const TYPE_SPEED = 70;
+  const DELETE_SPEED = 40;
+  const PAUSE_AFTER_TYPE = 2000;
+  const PAUSE_AFTER_DELETE = 400;
+
+  function tick() {
+    const current = roles[roleIndex];
+
+    if (!isDeleting) {
+      el.textContent = current.slice(0, charIndex + 1);
+      charIndex++;
+      if (charIndex === current.length) {
+        isDeleting = true;
+        setTimeout(tick, PAUSE_AFTER_TYPE);
+        return;
+      }
+      setTimeout(tick, TYPE_SPEED);
+    } else {
+      el.textContent = current.slice(0, charIndex - 1);
+      charIndex--;
+      if (charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(tick, PAUSE_AFTER_DELETE);
+        return;
+      }
+      setTimeout(tick, DELETE_SPEED);
+    }
+  }
+
+  // Small initial delay so it starts after page load settles
+  setTimeout(tick, 600);
+</script>
